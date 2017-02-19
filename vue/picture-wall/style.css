@@ -1,0 +1,259 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+a{
+	text-decoration: none;
+}
+li{
+	list-style: none;
+}
+.icon {
+   width: 1em; height: 1em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+}
+a.triangle{
+	width: 0;
+	display: block;
+	border-top: 8px solid #333;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	border-left: 8px solid transparent;
+	float: right;
+	position: relative;
+	top: 20px;
+	left: 20px;
+}
+a.triangle:after{
+	width: 0;
+	content: '';
+	display: block;
+	border-top: 8px solid rgba(231,231,231,0.9);
+	border-right: 8px solid transparent;
+	border-bottom: 18px solid transparent;
+	border-left: 8px solid transparent;
+	position: absolute;
+	top: -12px;
+	left: -8px;
+}
+
+body{
+	background-image: url(bg-c.jpg);
+}
+
+
+.page{
+	background-color: rgb(45,51,82);
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+section.a{
+	width: 300px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 200px;
+}
+header{
+	/*background-color: #ccc;*/
+	padding: 20px 0;
+	color: #ccc;
+}
+header label{
+	padding: 10px 15px;
+	margin: 0 20px;
+	cursor: pointer;
+	font-size: 20px;
+}
+.checked{
+	border-bottom: 3px solid #ccc;
+}
+header input[type="radio"]{
+	display: none;
+}
+form{
+	padding: 40px 50px;
+	background-color: white;
+	border-radius: 8px;
+}
+form div{
+	margin-bottom: 20px;
+	text-align: left;	
+	line-height: 20px;
+	color: #999;
+}
+form div input{
+	height: 20px;
+	float: right;
+	background-color: rgb(234,247,254);
+	border: 1px solid #ccc;
+}
+form>input{
+	padding: 10px 80px;
+	color: #333;
+	font-weight: bold;
+	font-size: 16px;
+	background-color: #B0E559;
+	border-radius: 20px;
+	border: none;
+	margin-top: 20px;
+	cursor: pointer;
+}
+/*---------------------------*/
+.layout{
+	width: 1290px;
+	margin: 0 auto;
+	/*border: 1px solid #ccc;*/
+}
+section nav{
+	background-image: url(nav.png);
+	background-size: contain;
+	background-repeat: repeat-x;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 6;
+}
+section nav ul:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+section nav ul li{
+	float: left;
+	height: 50px;
+	line-height: 50px;
+}
+section nav ul li.logout{
+	float: right;
+}
+
+.layout div.remind{
+	padding-bottom: 40px;
+	color: #777;
+	font-weight: bold;
+	background: url(bg-b.jpg) repeat-x left bottom;
+}
+.layout div svg{
+	margin-right: 15px;
+}
+
+.info-ct{
+	position: relative;
+	margin-top: 40px;
+	background: url(bg-b.jpg) repeat-x left bottom;
+}
+.info{
+	position: absolute;
+	box-sizing: border-box;
+	width: 400px;
+	margin: 0 14px;
+	margin-bottom: 40px;
+	float: left;
+	background-color: rgba(255,255,255,0.05);
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.8);
+	transition: box-shadow .3s ease;
+}
+.info:hover{
+	box-shadow: 0 2px 4px 2px rgba(0,0,0,0.8);
+}
+.info p{
+	padding: 25px;
+	word-wrap: break-word;
+	color: #868686;
+	line-height: 24px;
+	font-size: 14px;
+	padding-bottom: 10px;
+}
+.info time{
+	padding: 20px;
+	padding-top: 0;
+	display: block;
+}
+.msg{
+	line-height: 30px;
+	font-size: 14px;
+	margin-top: 15px;
+}
+.msg:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.msg img{
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	border: 1px solid #ccc;
+	margin-right: 10px;
+	float: left;
+}
+.msg span{
+	float: left;
+	height: 30px;
+	margin-right: 10px;
+}
+.msg time{
+	color: #888;
+}
+
+a.promote{
+	float: right;
+	color: #333;
+	border: 1px solid #888;
+	padding: 5px;
+}
+div.launch{
+	position: fixed;
+	bottom: 0;
+	border: 1px solid #333;
+	background-color: rgba(231,231,231,0.9);
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 30px;
+}
+div.launch div.ct{
+	height: 220px;
+}
+input[type="file"]{
+	float: left;
+	height: 220px;
+	width: 32%;
+	background-color: #fff;
+}
+.launch h1{
+	display: inline-block;
+}
+.launch h1,
+.launch div{
+	height: 40px;
+	line-height: 40px;
+}
+.launch textarea{
+	font-size: 20px;
+	float: right;
+	width: 66%;
+	height: 220px;
+	margin: 0;
+	resize: none;
+	border: none;
+	padding: 20px;
+	box-sizing: border-box;
+	outline: none;
+}
+.launch div.btn{
+	text-align: right;
+}
+
+section>div.layout{
+	padding-top: 100px;
+}
+#pic{
+	width: 400px;
+}
