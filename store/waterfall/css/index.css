@@ -1,0 +1,73 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            font-family: "Microsoft YaHei"
+        }
+
+        li {
+            list-style: none;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .layout {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+
+
+        /*addmore*/
+.addmore {
+	text-align: center;
+  background: #fff2e3;
+  color: black;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+.addmore h1 {
+	padding: 20px 0;
+}
+.addmore h3 {
+	padding: 20px 0;
+}
+.addmore p {
+	font-size: 14px;
+	color: 16px;
+}
+.addmore-list {
+	position: relative;
+}
+ li {
+  position: absolute;
+  width: 290px;
+  background: white;
+  border:1px solid silver;
+  border-radius:5px;
+  margin-right:10px ;
+}
+.addmore img {
+	width: 200px;
+	height: 200px;
+}
+.addmore a:hover {
+	opacity: 0.5;
+}
+.addmore .btn-readmore {
+	display: inline-block;
+	cursor: pointer;
+	color: white;
+	background-color: rgba(0,0,0,0.7);
+  margin-top:35px;
+  padding: 5px 10px;
+	border-radius: 5px;
+}
+.addmore .btn-readmore:hover {
+	background-color: black;
+}

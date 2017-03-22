@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sign Up And Log In</title>
+	<script src="./iconfont.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div v-bind:class="{page: !status}">
+			<section v-if="!status" class="a">
+				<header>
+					<label v-bind:class="{checked: actionType==='signUp'}">
+						<input type="radio" name="loginOrSignup" v-model="actionType" value="signUp">
+						注册
+					</label>
+					|
+					<label v-bind:class="{checked: actionType==='login'}">
+						<input type="radio" name="loginOrSignup" v-model="actionType" value="login">
+						登录
+					</label>
+				</header>
+				<div class="signup" v-if="actionType=='signUp'" v-on:submit.prevent="signUp">
+					<form>
+						<div>
+							用户名
+							<input type="text" name="username" v-model="username" placeholder="游客输入'1'登录">
+						</div>
+						<div>
+							密码
+							<input type="password" name="pwd"  v-model="password" placeholder="游客输入'1'登录">
+						</div>
+						<input type="submit" name="signup" value="注册">
+					</form>
+				</div>
+				<div class="login" v-if="actionType=='login'" v-on:submit.prevent="login">
+					<form>
+						<div>
+							用户名
+							<input type="text" name="username" v-model="username" placeholder="游客输入'1'登录">
+						</div>
+						<div>
+							密码
+							<input type="password" name="pwd" v-model="password" placeholder="游客输入'1'登录">
+						</div>
+						<input type="submit" name="signup" value="登录">
+					</form>
+				</div>
+			</section>
+		</div>
+
+		<section v-if="status">
+			<nav v-bind:class="{stick: true}">
+				<div class="layout">
+					<ul>
+						<li><a href="javascript:void(0)">首页</a></li>
+						<li><a href="javascript:void(0)">照片</a></li>
+						<li v-bind:class="{logout: true}"><a href="javascript:void(0)" v-on:click="logout">登出</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div class="layout">
+				<div class="main">
+					<div class="remind">
+						<svg class="icon" aria-hidden="true">
+						  <use xlink:href="#icon-liebiao"></use>
+						</svg>
+						最新消息
+						<a href="javascript:void(0)" class="promote" v-on:click="launch=!launch">发表消息</a>
+					</div>
+					<div class="info-ct">
+						<div class="info" v-for="info in infoList" ref="list">
+							<img id="pic" v-bind:src="info.picUrl" v-if="info.picUrl">
+							<p v-if="info.launchContent">{{ info.launchContent }}</p>
+							<!-- <p v-if="info.launchContent!==''">{{ info.launchContent }}</p> -->
+							<div class="msg">
+								<!-- <img v-bind:src="imgSrc">
+								<span>{{ currentUser.username }}</span> -->
+								<time>{{ info.launchTime }}</time>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="launch" v-if="launch">
+				<h1>输入你想发表的内容...</h1>
+				<a href="javascript:void(0)" class="triangle" v-on:click="disappear"></a>
+				<div class="ct">
+					<input type="file" name="file" id="photoFileUpload">
+					<textarea v-model="content"></textarea>
+				</div>
+				<div class="btn"><a href="javascript:void(0)" v-on:click="addInfo">回复</a></div>
+			</div>
+
+		</section>
+	</div>
+	
+
+	<script type="text/javascript" src="bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="lib/c3-0.4.11/c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
+
+<!-- Load d3.js and c3.js -->
+<script src="lib/d3/d3.min.js" charset="utf-8"></script>
+<script src="lib/c3-0.4.11/c3-0.4.11/c3.min.js"></script>
+    <style>
+    html,
+body {
+   width: 100%;
+   height: 100%;
+   padding: 0;
+   margin: 0;
+   background: black;
+}
+
+#container{
+background: black;
+height:250px;
+}
+svg{
+height: 100%;
+width: 100%;
+}
+text{
+fill:white;
+font: 10px sans-serif;
+text-anchor: middle;
+}
+.box{
+fill: #65cbed;
+}
+#button{
+width: 155px;
+height: 25px;
+background: #65cbed;
+color: black;
+margin-left:150px ;
+text-align:center;
+}
+
+h1{
+  color: #65cbed;
+}
+.bg {
+   margin-top: 30px;
+   float: left;
+   margin-left: 30px;
+   width: 120px;
+   overflow: hidden;
+   text-align: center;
+   color: red;
+}
+.base {
+   width: 120px;
+   height: 120px;
+   background: #ccc;
+   border-radius: 60px;
+   position: relative;
+   overflow: hidden;
+   z-index: 0;
+}
+
+.base:before {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   background: #f0f0f0;
+}
+
+.base:after {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   background: #f0f0f0;
+   left: 50%;
+   transform: rotate(60deg);
+   transform-origin: left center;
+}
+
+.num {
+   width: 120px;
+   height: 120px;
+   background: #ccc;
+   border-radius: 60px;
+   position: relative;
+   overflow: hidden;
+   line-height: 120px;
+   text-align: center;
+}
+
+.num:before {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   background: #f0f0f0;
+}
+
+.num:after {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   background: #ccc;
+   left: 50%;
+   transform: rotate(108deg);
+   transform-origin: left center;
+}
+
+.numtext {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   z-index: 3;
+}
+
+.ani {
+   width: 120px;
+   height: 120px;
+   background: #ccc;
+   border-radius: 60px;
+   position: relative;
+   overflow: hidden;
+   line-height: 120px;
+   text-align: center;
+   z-index: 0;
+}
+
+.ani:before {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   background: #f0f0f0;
+}
+
+.ani:after {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   background: #f0f0f0;
+   left: 50%;
+   animation: Yesilikeit 2s linear;
+   animation-fill-mode: forwards;
+   transform-origin: left center;
+}
+
+
+
+.ring {
+   width: 120px;
+   height: 120px;
+   background: #f0f0f0;
+   border-radius: 60px;
+   position: relative;
+   overflow: hidden;
+   line-height: 120px;
+   text-align: center;
+   z-index: 0;
+   background-image: linear-gradient(to right, transparent 50%, #ccc 0);
+}
+
+.ring:before {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   left: 50%;
+   top: 0;
+   animation: Yesilikeit2 1s linear;
+   animation-delay: 2s;
+   animation-fill-mode: forwards;
+   background: #ccc;
+   transform-origin: left center;
+   z-index: 3;
+   opacity: 0;
+}
+.ring:after {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   background: #f0f0f0;
+   left: 50%;
+   top: 0;
+   animation: Yesilikeit1 2s linear;
+   animation-fill-mode: forwards;
+   transform-origin: left center;
+   z-index: 1;
+}
+
+.hea {
+   position: absolute;
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   background: #fff;
+   z-index: 4;
+   left: 30px;
+   top: 30px;
+   line-height: 60px;
+   text-align: center;
+}
+
+   @keyframes Yesilikeit {
+   0% {
+       transform: rotate(0deg);
+   }
+   100% {
+       transform: rotate(108deg);
+   }
+}
+
+@keyframes Yesilikeit1 {
+   0% {
+       transform: rotate(0deg);
+   }
+   100% {
+       transform: rotate(0.5turn);
+   }
+}
+
+@keyframes Yesilikeit2 {
+   0% {
+       opacity: 1;
+       transform: rotate(0deg);
+   }
+   100% {
+       opacity: 1;
+       transform: rotate(0.1turn);
+   }
+}
+    </style>
+
+</head>
+
+<body>
+    <h1>随机数组表现</h1>
+    <div id="container"></div>
+    <input id="button" type="button" value="产生随机数组" />
+    <h1>C3.js动画</h1>
+    <div id="chart"></div> 
+    <!-- <h1>饼状图</h1>
+    <div class="clearfix">
+    <div class="bg">
+        <div class="base">
+        </div>
+        <p>Base</p>
+    </div>
+    <div class="bg">
+        <div class="num">
+            <div class="numtext">80%</div>
+        </div>
+        <p>Number</p>
+    </div>
+    <div class="bg">
+        <div class="ani">
+            <div class="numtext">30%</div>
+        </div>
+        <p>Animate</p>
+    </div>
+    <div class="bg">
+        <div class="ring">
+            <div class="hea">60%</div>
+        </div>
+        <p>Ring</p>
+    </div>
+    </div> -->
+
+
+
+
+    <script>
+    function init(){
+    var arr=[];
+
+    //生成固定数的随机数组
+    for(var rd=0;rd<10;rd++){
+      var randomData = Math.floor(Math.random()*100+1);
+      arr.push(randomData);
+     }
+
+    //初始化数组长度的html，并给出id
+    var len=arr.length;
+    var idName="idName";
+    var html = '';
+    html += '<svg>';
+    for(var key=0;key<len;key++){
+
+        var long=arr[key]*2;
+        var longx=key*40+50;
+        var longxx=key*40+57;
+        var longy=200-long;
+
+    html +='<g><rect data-id='+key+' class=box width=15 height='+long+' x='+longx+' y='+longy+' ry=3></rect><text dy=0.1em x='+longxx+' y=220>'+long+'</text></g>';
+    }
+    html += '</svg>';
+    document.getElementById('container').innerHTML = html;
+
+    //指定一个柱体
+    // document.getElementById('a1').style.height = "100px";
+    // document.getElementById('a1').innerText="100";
+    //选择排序
+    var i=0;
+    var scan=function(){
+      var minIndex, temp;
+      var box = document.getElementsByClassName("box");
+
+    // console.log(parseInt(box[i].getAttribute("data-id")));
+
+      for(o=0;o<len;o++){ //上蓝色
+        box[o].style.fill="#65cbed";
+      }
+      if(i<len){ //上红色
+        box[i].style.fill="red";
+      }
+      i++;
+    }; //scan
+    // setInterval(scan,500);
+
+    }
+    init();
+    //点击按钮
+    var btnClick = document.getElementById('button');
+    console.log(btnClick);
+    console.log(init);
+    btnClick.onclick = function(){
+    //   clearInterval();
+    // document.getElementById('container').innerHTML = "";
+      init();
+    };
+
+    //
+    var chart = c3.generate({
+    bindto: '#chart',
+    data: {
+      columns: [
+        ['data1', 30, 200, 100, 400, 150, 250],
+        ['data2', 50, 20, 10, 40, 15, 25]
+      ],
+      axes: {
+        data2: 'y2'
+      }
+    },
+    axis: {
+      y: {
+        label: {
+          text: 'Y Label',
+          position: 'outer-middle'
+        }
+      },
+      y2: {
+        show: true,
+        label: {
+          text: 'Y2 Label',
+          position: 'outer-middle'
+        }
+      }
+    }
+});
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 130, 120, 150, 140, 160, 150],
+            ['data2', 30, 20, 50, 40, 60, 50],
+        ],
+        types: {
+            data1: 'step',
+            data2: 'area-step'
+        }
+    });
+}, 2000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 30, 200, 100, 400, 150, 250],
+            ['data2', 50, 20, 10, 40, 15, 25]
+        ],
+    });
+}, 4000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 130, 120, 150, 140, 160, 150],
+            ['data2', 30, 20, 50, 40, 60, 50],
+        ],
+        type: 'bar'
+    });
+}, 6000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 30, 200, 100, 400, 150, 250],
+            ['data2', 50, 20, 10, 40, 15, 25]
+        ],
+        type : 'pie'
+    });
+}, 8000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 130, 120, 150, 140, 160, 150],
+            ['data2', 30, 20, 50, 40, 60, 50],
+        ],
+        types: {
+            data1: 'area',
+            data2: 'area-spline'
+        }
+    });
+}, 10000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 30, 200, 100, 400, 150, 250],
+            ['data2', 50, 20, 10, 40, 15, 25]
+        ],
+        type : 'donut'
+    });
+}, 12000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 130, 120, 150, 140, 160, 150],
+            ['data2', 30, 20, 50, 40, 60, 50],
+        ],
+        types: {
+            data1: 'area-spline',
+            data2: 'area-spline'
+            
+        },
+    });
+}, 14000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 30, 200, 100, 400, 150, 250],
+            ['data2', 50, 20, 10, 40, 15, 25]
+        ],
+    });
+}, 16000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 130, 120, 150, 140, 160, 150],
+            ['data2', 30, 20, 50, 40, 60, 50],
+        ],
+        type: 'scatter'
+    });
+}, 18000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 30, 200, 100, 400, 150, 250],
+            ['data2', 50, 20, 10, 40, 15, 25]
+        ],
+        type: 'bar',
+    });
+}, 20000);
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ['data1', 130, 120, 150, 140, 160, 150],
+            ['data2', 30, 20, 50, 40, 60, 50],
+        ],
+        type: 'gauge',
+    });
+}, 22000);
+    </script>
+</body>
+
+</html>

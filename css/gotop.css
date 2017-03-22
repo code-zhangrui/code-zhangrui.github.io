@@ -1,0 +1,30 @@
+/* goTop区 */
+
+.go-top {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 70px;
+    height: 70px;
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    font-size: 12px;
+    line-height: 70px;
+    text-align: center;
+    opacity: 1;
+    z-index: 19;
+    transition: all 0.25s;
+    cursor: pointer;
+    display: none;
+    transition: 0.5s;
+}
+
+.go-top:hover {
+    border-radius:50%;
+    color: #f23cf2;
+}
+
+.hide {
+    display: none;
+}
